@@ -1,11 +1,18 @@
 #ifndef INC_SCORE_H_
 #define INC_SCORE_H_
 
-#include <Player.h>
 
-class Score: public Player {
+
+class Score{
+private:
+	int point;
+	int playerNumber;
 public:
-	Score();
+	Score(int playerNumber);
+	int getPoint();
+	void setPoint(int point);
+	void displayPoint();
+	void endGame();
 	virtual ~Score();
 };
 

@@ -1,11 +1,21 @@
 #include <Player.h>
 
-Player::Player() {
-	// TODO Auto-generated constructor stub
-
+Player::Player(int playerNumber): score(playerNumber){
+this->playerNumber=playerNumber;
 }
 
-Player::~Player() {
-	// TODO Auto-generated destructor stub
+int Player::getPlayerNumber(){
+	return playerNumber;
 }
+void Player::displayPlayerLocation(){
+	//Todo::display location
+}
+void Player::setLocation(double location){
+	this->location=location;
+	displayPlayerLocation();
+}
+double Player::getLocation(){
+	return location;
+}
+Player::~Player() {}
 

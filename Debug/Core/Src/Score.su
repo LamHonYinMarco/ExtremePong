@@ -1,0 +1,7 @@
+../Core/Src/Score.cpp:3:1:Score::Score(int)	16	static
+../Core/Src/Score.cpp:8:5:int Score::getPoint()	16	static
+../Core/Src/Score.cpp:11:6:void Score::displayPoint()	16	static
+../Core/Src/Score.cpp:15:6:void Score::setPoint(int)	16	static
+../Core/Src/Score.cpp:19:6:void Score::endGame()	16	static
+../Core/Src/Score.cpp:23:1:Score::~Score()	16	static
+../Core/Src/Score.cpp:23:1:virtual Score::~Score()	16	static

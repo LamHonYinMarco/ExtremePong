@@ -1,0 +1,10 @@
+../Core/Src/Settings.cpp:3:1:Settings::Settings()	16	static
+../Core/Src/Settings.cpp:8:6:void Settings::displayValues()	16	static
+../Core/Src/Settings.cpp:11:6:void Settings::setPointsNeeded()	16	static
+../Core/Src/Settings.cpp:19:5:int Settings::getPointsNeeded()	16	static
+../Core/Src/Settings.cpp:22:6:void Settings::setBallSpeedIncreaseRate()	16	static
+../Core/Src/Settings.cpp:30:5:int Settings::getBallSpeedIncreaseRate()	16	static
+../Core/Src/Settings.cpp:33:6:void Settings::setKnockback()	16	static
+../Core/Src/Settings.cpp:36:6:bool Settings::getKnockback()	16	static
+../Core/Src/Settings.cpp:39:1:Settings::~Settings()	16	static
+../Core/Src/Settings.cpp:39:1:virtual Settings::~Settings()	16	static

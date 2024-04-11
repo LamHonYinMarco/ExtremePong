@@ -1,0 +1,4 @@
+../Core/Src/Ball.cpp:3:1:Ball::Ball()	16	static
+../Core/Src/Ball.cpp:9:6:void Ball::reset()	16	static
+../Core/Src/Ball.cpp:15:1:Ball::~Ball()	16	static
+../Core/Src/Ball.cpp:15:1:virtual Ball::~Ball()	16	static

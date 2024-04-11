@@ -1,11 +1,16 @@
 #include <Ball.h>
-
+#include "lcd.h"
 Ball::Ball() {
-	// TODO Auto-generated constructor stub
-
+	x = LCD_DispWindow_COLUMN / 2;
+	y = LCD_DispWindow_PAGE / 2;
+	dx = 1;
+	dy = 1;
 }
-
-Ball::~Ball() {
-	// TODO Auto-generated destructor stub
+void Ball::reset() {
+	x = LCD_DispWindow_COLUMN / 2;
+	y = LCD_DispWindow_PAGE / 2;
+	dx = 1;
+	dy = 1;
 }
+Ball::~Ball() {}
 

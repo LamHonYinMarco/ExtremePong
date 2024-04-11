@@ -15,7 +15,7 @@ void LCD_INIT ( void )
 	LCD_BackLed_Control(ENABLE);      
 	LCD_Rst();
 	LCD_REG_Config();
-	LCD_Clear (0, 0, 240, 320, BACKGROUND);
+	LCD_Clear (0, 0, 240, 320, BLACK);
 }
 
 
@@ -455,4 +455,6 @@ void LCD_DrawEllipse ( uint16_t usC, uint16_t usP, uint16_t SR, uint16_t LR, uin
 		LCD_DrawDot(usC+SR*cos(i),usP+LR*sin(i),usColor);
 	}
 }
+
+
 

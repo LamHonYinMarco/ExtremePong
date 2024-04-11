@@ -1,7 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/Game.h \
- ../Core/Inc/Player.h ../Core/Inc/Score.h ../Core/Inc/Menu.h \
- ../Core/Inc/Settings.h ../Core/Inc/Ball.h ../Core/Inc/main.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
+Core/Src/Ball.o: ../Core/Src/Ball.cpp ../Core/Inc/Ball.h \
+ ../Core/Inc/lcd.h ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h \
@@ -24,15 +22,9 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/Game.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_sram.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_fsmc.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
- ../Core/Inc/lcd.h
-../Core/Inc/Game.h:
-../Core/Inc/Player.h:
-../Core/Inc/Score.h:
-../Core/Inc/Menu.h:
-../Core/Inc/Settings.h:
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 ../Core/Inc/Ball.h:
-../Core/Inc/main.h:
+../Core/Inc/lcd.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
@@ -57,4 +49,3 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/Game.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_sram.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_fsmc.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
-../Core/Inc/lcd.h:
