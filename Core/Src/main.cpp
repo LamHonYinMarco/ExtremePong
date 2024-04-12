@@ -91,7 +91,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
   LCD_INIT();
 Game game;
-//  game game2;
+game.menu.setCurrentMenu(Menu::singlePlayerOptionsScreen);
+game.menu.displayCurrentMenu();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */

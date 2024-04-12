@@ -15,7 +15,7 @@ void LCD_INIT ( void )
 	LCD_BackLed_Control(ENABLE);      
 	LCD_Rst();
 	LCD_REG_Config();
-	LCD_Clear (0, 0, 240, 320, BLACK);
+	LCD_Clear (0, 0, 240, 320, BACKGROUND);
 }
 
 
@@ -371,7 +371,14 @@ void LCD_DrawLine ( uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2, 
 	
 	
 }   
-
+void LCD_DrawEmptyRectangle (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2, uint16_t usColor){
+for(int i =0;i<=3;i++){
+	LCD_DrawLine(usC1,usP1+i,usC2,usP1+i,usColor);
+	LCD_DrawLine(usC1,usP2+i,usC2,usP2+i,usColor);
+	LCD_DrawLine(usC1+i,usP1,usC1+i,usP2,usColor);
+	LCD_DrawLine(usC2-i,usP1,usC2-i,usP2,usColor);
+}
+}
 
 void LCD_DrawChar ( uint16_t usC, uint16_t usP, const char cChar )
 {
@@ -391,10 +398,10 @@ void LCD_DrawChar ( uint16_t usC, uint16_t usP, const char cChar )
 		for ( ucColumn = 0; ucColumn < WIDTH_EN_CHAR; ucColumn ++ )
 		{
 			if ( ucTemp & 0x01 )
-				LCD_Write_Data ( 0x001F );
+				LCD_Write_Data ( WHITE );
 			
 			else
-				LCD_Write_Data (  0xFFFF );								
+				LCD_Write_Data (  BLACK );
 			
 			ucTemp >>= 1;		
 			

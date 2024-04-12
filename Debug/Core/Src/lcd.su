@@ -12,7 +12,8 @@
 ../Core/Src/lcd.cpp:270:10:uint16_t LCD_Read_PixelData()	16	static
 ../Core/Src/lcd.cpp:290:10:uint16_t LCD_GetPointPixel(uint16_t, uint16_t)	24	static
 ../Core/Src/lcd.cpp:304:6:void LCD_DrawLine(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	64	static
-../Core/Src/lcd.cpp:376:6:void LCD_DrawChar(uint16_t, uint16_t, char)	24	static
-../Core/Src/lcd.cpp:410:6:void LCD_DrawString(uint16_t, uint16_t, const char*)	16	static
-../Core/Src/lcd.cpp:438:6:void LCD_DrawDot(uint16_t, uint16_t, uint16_t)	16	static
-../Core/Src/lcd.cpp:449:6:void LCD_DrawEllipse(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	48	static
+../Core/Src/lcd.cpp:374:6:void LCD_DrawEmptyRectangle(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	40	static
+../Core/Src/lcd.cpp:383:6:void LCD_DrawChar(uint16_t, uint16_t, char)	24	static
+../Core/Src/lcd.cpp:417:6:void LCD_DrawString(uint16_t, uint16_t, const char*)	16	static
+../Core/Src/lcd.cpp:445:6:void LCD_DrawDot(uint16_t, uint16_t, uint16_t)	16	static
+../Core/Src/lcd.cpp:456:6:void LCD_DrawEllipse(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	48	static
