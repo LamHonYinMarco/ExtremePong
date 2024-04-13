@@ -3,5 +3,5 @@
 ../Core/Src/Player.cpp:10:6:void Player::displayPlayerLocation()	16	static
 ../Core/Src/Player.cpp:13:6:void Player::setLocation(double)	24	static
 ../Core/Src/Player.cpp:17:8:double Player::getLocation()	16	static
-../Core/Src/Player.cpp:20:1:Player::~Player()	16	static
-../Core/Src/Player.cpp:20:1:virtual Player::~Player()	16	static
+../Core/Src/Player.cpp:23:1:Player::~Player()	16	static
+../Core/Src/Player.cpp:23:1:virtual Player::~Player()	16	static

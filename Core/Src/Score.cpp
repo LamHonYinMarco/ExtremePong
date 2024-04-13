@@ -3,7 +3,7 @@
 Score::Score(int playerNumber){
 	// TODO Auto-generated constructor stub
 this->playerNumber=playerNumber;
-point=0;
+point=10;
 }
 int Score::getPoint(){
 	return point;

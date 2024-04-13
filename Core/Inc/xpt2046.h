@@ -90,7 +90,8 @@ typedef struct
 
 
 extern volatile uint8_t               ucXPT2046_TouchFlag;
-
+extern volatile uint8_t               k1Flag;
+extern volatile uint8_t               k2Flag;
 extern strType_XPT2046_TouchPara      strXPT2046_TouchPara;
 
 

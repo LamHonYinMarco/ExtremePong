@@ -6,7 +6,7 @@ private:
 	int currentMenu;
 	Settings settings;
 public:
-	enum menuNames{homeScreen,singlePlayerOptionsScreen,settingsScreen,vsBotGame,vsWallGame,twoPlayersGame};
+	enum menuNames{homeScreen,singlePlayerOptionsScreen,settingsScreen,vsBotGame,vsWallGame,twoPlayersGame,WinScreen,LoseScreen};
 	Menu();
 	//TODO onClickListener
 	void setCurrentMenu(int menu);

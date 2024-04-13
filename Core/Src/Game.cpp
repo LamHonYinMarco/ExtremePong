@@ -11,12 +11,15 @@ return start;
 }
 void Game::quit(){
 	start = false;
-	//Todo: return to home menu
-
+	player[0].score.setPoint(10);
+	player[1].score.setPoint(10);
+	ball.reset();
+	menu.setCurrentMenu(Menu::homeScreen);
 }
 void Game::restart(){
-	//Todo: reset ball and score
-
+	player[0].score.setPoint(10);
+	player[1].score.setPoint(10);
+	ball.reset();
 }
 Game::~Game(){
 

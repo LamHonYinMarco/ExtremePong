@@ -17,5 +17,8 @@ void Player::setLocation(double location){
 double Player::getLocation(){
 	return location;
 }
+//Score Player::getScore(){
+//	return score;
+//}
 Player::~Player() {}
 

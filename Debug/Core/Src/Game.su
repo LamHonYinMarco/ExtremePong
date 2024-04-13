@@ -2,6 +2,6 @@
 ../Core/Src/Game.cpp:6:6:void Game::setStart(bool)	16	static
 ../Core/Src/Game.cpp:9:6:bool Game::getStart()	16	static
 ../Core/Src/Game.cpp:12:6:void Game::quit()	16	static
-../Core/Src/Game.cpp:17:6:void Game::restart()	16	static
-../Core/Src/Game.cpp:21:1:Game::~Game()	24	static
-../Core/Src/Game.cpp:21:1:virtual Game::~Game()	16	static
+../Core/Src/Game.cpp:19:6:void Game::restart()	16	static
+../Core/Src/Game.cpp:24:1:Game::~Game()	24	static
+../Core/Src/Game.cpp:24:1:virtual Game::~Game()	16	static

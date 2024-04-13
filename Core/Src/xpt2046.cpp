@@ -19,10 +19,8 @@ strType_XPT2046_TouchPara strXPT2046_TouchPara = { 0.003914, 0.063594, -20.12189
                                               // { 0.001030, 0.064188, -10.804098, -0.085584, 0.001420, 324.127036 };  
 
 volatile uint8_t ucXPT2046_TouchFlag = 0;
-
-
-
-
+volatile uint8_t k1Flag = 0;
+volatile uint8_t k2Flag = 0;
 	
 static void XPT2046_DelayUS ( __IO uint32_t ulCount )
 {

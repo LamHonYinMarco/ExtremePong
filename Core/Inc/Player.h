@@ -5,15 +5,17 @@ class Player {
 private:
 	int playerNumber;
 	double location;
-	Score score;
+
 
 public:
+	Score score;
 	Player(int playerNumber);
 //	void setPlayerNumber(int playerNumber);
 	int getPlayerNumber();
 	void setLocation(double location);
 	double getLocation();
 	void displayPlayerLocation();
+//	Score getScore();
 	virtual ~Player();
 };
 

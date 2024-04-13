@@ -1,7 +1,7 @@
-../Core/Src/xpt2046.cpp:27:13:void XPT2046_DelayUS(uint32_t)	24	static
-../Core/Src/xpt2046.cpp:43:13:void XPT2046_WriteCMD(uint8_t)	24	static
-../Core/Src/xpt2046.cpp:68:17:uint16_t XPT2046_ReadCMD()	16	static
-../Core/Src/xpt2046.cpp:96:17:uint16_t XPT2046_ReadAdc(uint8_t)	16	static
-../Core/Src/xpt2046.cpp:105:13:void XPT2046_ReadAdc_XY(int16_t*, int16_t*)	24	static
-../Core/Src/xpt2046.cpp:243:16:uint8_t XPT2046_ReadAdc_Smooth_XY(strType_XPT2046_Coordinate*)	80	static
-../Core/Src/xpt2046.cpp:481:9:uint8_t XPT2046_Get_TouchedPoint(strType_XPT2046_Coordinate*, strType_XPT2046_TouchPara*)	40	static
+../Core/Src/xpt2046.cpp:25:13:void XPT2046_DelayUS(uint32_t)	24	static
+../Core/Src/xpt2046.cpp:41:13:void XPT2046_WriteCMD(uint8_t)	24	static
+../Core/Src/xpt2046.cpp:66:17:uint16_t XPT2046_ReadCMD()	16	static
+../Core/Src/xpt2046.cpp:94:17:uint16_t XPT2046_ReadAdc(uint8_t)	16	static
+../Core/Src/xpt2046.cpp:103:13:void XPT2046_ReadAdc_XY(int16_t*, int16_t*)	24	static
+../Core/Src/xpt2046.cpp:241:16:uint8_t XPT2046_ReadAdc_Smooth_XY(strType_XPT2046_Coordinate*)	80	static
+../Core/Src/xpt2046.cpp:479:9:uint8_t XPT2046_Get_TouchedPoint(strType_XPT2046_Coordinate*, strType_XPT2046_TouchPara*)	40	static
