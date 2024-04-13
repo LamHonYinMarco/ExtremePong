@@ -1,5 +1,4 @@
-Core/Src/Menu.o: ../Core/Src/Menu.cpp ../Core/Inc/Menu.h \
- ../Core/Inc/Settings.h ../Core/Inc/lcd.h \
+Core/Src/xpt2046.o: ../Core/Src/xpt2046.cpp ../Core/Inc/xpt2046.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -24,10 +23,8 @@ Core/Src/Menu.o: ../Core/Src/Menu.cpp ../Core/Inc/Menu.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_sram.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_fsmc.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
- ../Core/Inc/xpt2046.h
-../Core/Inc/Menu.h:
-../Core/Inc/Settings.h:
-../Core/Inc/lcd.h:
+ ../Core/Inc/lcd.h ../Core/Inc/Menu.h ../Core/Inc/Settings.h
+../Core/Inc/xpt2046.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
@@ -52,4 +49,6 @@ Core/Src/Menu.o: ../Core/Src/Menu.cpp ../Core/Inc/Menu.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_sram.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_fsmc.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
-../Core/Inc/xpt2046.h:
+../Core/Inc/lcd.h:
+../Core/Inc/Menu.h:
+../Core/Inc/Settings.h:

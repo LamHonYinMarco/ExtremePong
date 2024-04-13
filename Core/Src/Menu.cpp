@@ -1,6 +1,6 @@
 #include <Menu.h>
 #include "lcd.h"
-
+#include "xpt2046.h"
 Menu::Menu() {
 	currentMenu = homeScreen;
 }
@@ -12,7 +12,7 @@ void Menu::displayCurrentMenu() {
 	switch (currentMenu) {
 	case homeScreen:
 		LCD_Clear(LCD_DispWindow_Start_COLUMN, LCD_DispWindow_Start_PAGE,
-				LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
+		LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
 		LCD_DrawString(70, 40, "Extreme Pong");
 		LCD_DrawEmptyRectangle(20, 80, 220, 130, WHITE);
 		LCD_DrawString(70, 100, "Single Player");
@@ -23,7 +23,7 @@ void Menu::displayCurrentMenu() {
 		break;
 	case singlePlayerOptionsScreen:
 		LCD_Clear(LCD_DispWindow_Start_COLUMN, LCD_DispWindow_Start_PAGE,
-				LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
+		LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
 		LCD_DrawString(70, 40, "Extreme Pong");
 		LCD_DrawEmptyRectangle(20, 80, 220, 130, WHITE);
 		LCD_DrawString(70, 100, "Vs Bot");
@@ -53,6 +53,33 @@ void Menu::setCurrentMenu(int menu) {
 	displayCurrentMenu();
 }
 // TODO onClickListiener
+void Menu::onClickListiener() {
+	strType_XPT2046_Coordinate strDisplayCoordinate;
+	if (!XPT2046_Get_TouchedPoint(&strDisplayCoordinate,
+			&strXPT2046_TouchPara)) {
+		return;
+	}
+	switch (currentMenu) {
+	case homeScreen:
+		if ((strDisplayCoordinate.y > 80) && (strDisplayCoordinate.y < 130)) {
+			if ((strDisplayCoordinate.x > 20)
+					&& (strDisplayCoordinate.x < 220)) {
+				setCurrentMenu(singlePlayerOptionsScreen);
+
+			}
+		}
+
+		break;
+	case singlePlayerOptionsScreen:
+
+		break;
+	case settingsScreen:
+
+		break;
+	default:
+		;
+	}
+}
 Menu::~Menu() {
 }
 

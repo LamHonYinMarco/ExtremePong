@@ -12,6 +12,7 @@ public:
 	void setCurrentMenu(int menu);
 	void displayCurrentMenu();
 	int getCurrentMenu();
+	void onClickListiener();
 	virtual ~Menu();
 };
 

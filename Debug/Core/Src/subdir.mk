@@ -19,7 +19,8 @@ CPP_SRCS += \
 ../Core/Src/Score.cpp \
 ../Core/Src/Settings.cpp \
 ../Core/Src/lcd.cpp \
-../Core/Src/main.cpp 
+../Core/Src/main.cpp \
+../Core/Src/xpt2046.cpp 
 
 C_DEPS += \
 ./Core/Src/stm32f1xx_hal_msp.d \
@@ -41,7 +42,8 @@ OBJS += \
 ./Core/Src/stm32f1xx_it.o \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
-./Core/Src/system_stm32f1xx.o 
+./Core/Src/system_stm32f1xx.o \
+./Core/Src/xpt2046.o 
 
 CPP_DEPS += \
 ./Core/Src/Ball.d \
@@ -51,7 +53,8 @@ CPP_DEPS += \
 ./Core/Src/Score.d \
 ./Core/Src/Settings.d \
 ./Core/Src/lcd.d \
-./Core/Src/main.d 
+./Core/Src/main.d \
+./Core/Src/xpt2046.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -63,7 +66,7 @@ Core/Src/%.o Core/Src/%.su: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/Ball.d ./Core/Src/Ball.o ./Core/Src/Ball.su ./Core/Src/Game.d ./Core/Src/Game.o ./Core/Src/Game.su ./Core/Src/Menu.d ./Core/Src/Menu.o ./Core/Src/Menu.su ./Core/Src/Player.d ./Core/Src/Player.o ./Core/Src/Player.su ./Core/Src/Score.d ./Core/Src/Score.o ./Core/Src/Score.su ./Core/Src/Settings.d ./Core/Src/Settings.o ./Core/Src/Settings.su ./Core/Src/lcd.d ./Core/Src/lcd.o ./Core/Src/lcd.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f1xx_hal_msp.d ./Core/Src/stm32f1xx_hal_msp.o ./Core/Src/stm32f1xx_hal_msp.su ./Core/Src/stm32f1xx_it.d ./Core/Src/stm32f1xx_it.o ./Core/Src/stm32f1xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f1xx.d ./Core/Src/system_stm32f1xx.o ./Core/Src/system_stm32f1xx.su
+	-$(RM) ./Core/Src/Ball.d ./Core/Src/Ball.o ./Core/Src/Ball.su ./Core/Src/Game.d ./Core/Src/Game.o ./Core/Src/Game.su ./Core/Src/Menu.d ./Core/Src/Menu.o ./Core/Src/Menu.su ./Core/Src/Player.d ./Core/Src/Player.o ./Core/Src/Player.su ./Core/Src/Score.d ./Core/Src/Score.o ./Core/Src/Score.su ./Core/Src/Settings.d ./Core/Src/Settings.o ./Core/Src/Settings.su ./Core/Src/lcd.d ./Core/Src/lcd.o ./Core/Src/lcd.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f1xx_hal_msp.d ./Core/Src/stm32f1xx_hal_msp.o ./Core/Src/stm32f1xx_hal_msp.su ./Core/Src/stm32f1xx_it.d ./Core/Src/stm32f1xx_it.o ./Core/Src/stm32f1xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f1xx.d ./Core/Src/system_stm32f1xx.o ./Core/Src/system_stm32f1xx.su ./Core/Src/xpt2046.d ./Core/Src/xpt2046.o ./Core/Src/xpt2046.su
 
 .PHONY: clean-Core-2f-Src
 
