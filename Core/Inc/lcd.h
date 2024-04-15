@@ -51,6 +51,11 @@
 #define      CMD_Set_PAGE		   0x2B	     
 #define      CMD_SetPixel		   0x2C	     
 
+#define wallWidith 3
+#define ballWidith 5
+#define playerWidith 45
+#define playerHeight 5
+
 void            LCD_INIT		( void );
 void            LCD_Rst			( void );
 void            LCD_BackLed_Control	( FunctionalState enumState );
@@ -67,5 +72,11 @@ void            LCD_DrawString		( uint16_t usC, uint16_t usP, const char * pStr)
 void            LCD_DrawDot		( uint16_t usC, uint16_t usP, uint16_t usColor );
 void 		LCD_DrawEllipse		( uint16_t usC, uint16_t usP, uint16_t SR, uint16_t LR, uint16_t usColor);
 void	LCD_DrawEmptyRectangle (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2, uint16_t usColor);
+void 	LCD_DrawBall ( uint16_t usC, uint16_t usP, uint16_t usColor );
+void	LCD_MoveBall (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2);
+void 	LCD_DrawPlayer ( uint16_t usC, uint16_t usP, uint16_t usColor );
+void	LCD_MovePlayer (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2);
+void	LCD_DrawNet ();
+
 #endif 
 

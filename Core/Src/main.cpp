@@ -93,9 +93,11 @@ int main(void) {
 	LCD_INIT();
 	int k1Release = 0, k2Release =0;
 	Game game;
-//game.menu.setCurrentMenu(Menu::vsWallGame);
+//game.menu.setCurrentMenu(Menu::vsBotGame);
 	game.menu.displayCurrentMenu();
-
+//	LCD_DrawBall(120,150,WHITE);
+//	LCD_DrawPlayer(120,300,WHITE);
+//	LCD_DrawPlayer(120,20-playerHeight,WHITE);
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -123,7 +125,7 @@ int main(void) {
 			k2Flag = 0;
 			game.restart();
 		}
-
+game.gaming();
 		//	LCD_DrawString(0, 0, "Works");
 		/* USER CODE END WHILE */
 

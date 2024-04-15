@@ -9,14 +9,23 @@ class Game {
 private:
 	bool start;
 public:
-	Player player[2] = { Player(1), Player(2) };
+	Player player[2] = { Player(Player::player1), Player(Player::player2) };
 	Menu menu;
 	Ball ball;
 	Game();
+
 	void setStart(bool start);
 	bool getStart();
 	void quit();
 	void restart();
+	bool checkCollision(int playerNumber);
+	void moveBall();
+	void knockback();
+	void botMovement();
+	void gaming();
+	//TODO get player location function
+	void displayBallMovement();
+	void displayPlayerMovement(int playerNumber);
 	virtual ~Game();
 };
 

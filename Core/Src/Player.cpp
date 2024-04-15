@@ -2,6 +2,7 @@
 
 Player::Player(int playerNumber): score(playerNumber){
 this->playerNumber=playerNumber;
+location = 98;
 }
 
 int Player::getPlayerNumber(){
@@ -14,7 +15,7 @@ void Player::setLocation(double location){
 	this->location=location;
 	displayPlayerLocation();
 }
-double Player::getLocation(){
+int Player::getLocation(){
 	return location;
 }
 //Score Player::getScore(){

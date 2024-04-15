@@ -14,7 +14,6 @@ void setBallSpeedIncreaseRate();
 int getBallSpeedIncreaseRate();
 void setKnockback();
 bool getKnockback();
-void displayValues();
 	virtual ~Settings();
 };
 

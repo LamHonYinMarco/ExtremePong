@@ -9,7 +9,6 @@ int Menu::getCurrentMenu() {
 	return currentMenu;
 }
 void Menu::displayCurrentMenu() {
-	//TODO
 	switch (currentMenu) {
 	case homeScreen:
 		LCD_Clear(LCD_DispWindow_Start_COLUMN, LCD_DispWindow_Start_PAGE,
@@ -47,7 +46,7 @@ void Menu::displayCurrentMenu() {
 		//Ball Speed Up Rate button
 		LCD_DrawEmptyRectangle(20, 80, 220, 130, WHITE);
 		LCD_DrawString(30, 100, "Ball Speed Up Rate:");
-		sprintf(resultsDisplay, "%d%%", settings.getBallSpeedIncreaseRate());
+		sprintf(resultsDisplay, "%d", settings.getBallSpeedIncreaseRate());
 		LCD_DrawString(180, 100, resultsDisplay);
 
 		// Knockback button
@@ -66,22 +65,20 @@ void Menu::displayCurrentMenu() {
 	case vsBotGame:
 		LCD_Clear(LCD_DispWindow_Start_COLUMN, LCD_DispWindow_Start_PAGE,
 		LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
-		for (int i=0; i <= 3; i++) {
+		for (int i=0; i <= wallWidith; i++) {
 			LCD_DrawLine(LCD_DispWindow_Start_COLUMN + i,
 					LCD_DispWindow_Start_PAGE, LCD_DispWindow_Start_COLUMN + i,
 					LCD_DispWindow_PAGE, WHITE);
 			LCD_DrawLine(LCD_DispWindow_COLUMN - i, LCD_DispWindow_Start_PAGE,
 					LCD_DispWindow_COLUMN - i, LCD_DispWindow_PAGE, WHITE);
 		}
-		for(int i=0; i<LCD_DispWindow_COLUMN; i+=5){
-					LCD_DrawDot(i,LCD_DispWindow_PAGE/2,WHITE);
-				}
+		LCD_DrawNet();
 		break;
 	case vsWallGame:
 		LCD_Clear(LCD_DispWindow_Start_COLUMN, LCD_DispWindow_Start_PAGE,
 		LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
 
-		for (int i=0; i <= 3; i++) {
+		for (int i=0; i <= wallWidith; i++) {
 			LCD_DrawLine(LCD_DispWindow_Start_COLUMN + i,
 					LCD_DispWindow_Start_PAGE, LCD_DispWindow_Start_COLUMN + i,
 					LCD_DispWindow_PAGE, WHITE);
@@ -91,23 +88,19 @@ void Menu::displayCurrentMenu() {
 					LCD_DispWindow_Start_PAGE + i, LCD_DispWindow_COLUMN,
 					LCD_DispWindow_Start_PAGE + i, WHITE);
 		}
-		for(int i=0; i<LCD_DispWindow_COLUMN; i+=5){
-			LCD_DrawDot(i,LCD_DispWindow_PAGE/2,WHITE);
-		}
+		LCD_DrawNet();
 		break;
 	case twoPlayersGame:
 		LCD_Clear(LCD_DispWindow_Start_COLUMN, LCD_DispWindow_Start_PAGE,
 		LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
-		for (int i=0; i <= 3; i++) {
+		for (int i=0; i <= wallWidith; i++) {
 			LCD_DrawLine(LCD_DispWindow_Start_COLUMN + i,
 					LCD_DispWindow_Start_PAGE, LCD_DispWindow_Start_COLUMN + i,
 					LCD_DispWindow_PAGE, WHITE);
 			LCD_DrawLine(LCD_DispWindow_COLUMN - i, LCD_DispWindow_Start_PAGE,
 					LCD_DispWindow_COLUMN - i, LCD_DispWindow_PAGE, WHITE);
 		}
-		for(int i=0; i<LCD_DispWindow_COLUMN; i+=5){
-					LCD_DrawDot(i,LCD_DispWindow_PAGE/2,WHITE);
-				}
+		LCD_DrawNet();
 		break;
 	default:
 		;
@@ -178,7 +171,7 @@ void Menu::onClickListiener() {
 				&& ((strDisplayCoordinate.x > 20)
 						&& (strDisplayCoordinate.x < 220))) {
 			settings.setBallSpeedIncreaseRate();
-			sprintf(resultsDisplay, "%d%%",
+			sprintf(resultsDisplay, "%d",
 					settings.getBallSpeedIncreaseRate());
 			LCD_DrawString(180, 100, "    ");
 			LCD_DrawString(180, 100, resultsDisplay);

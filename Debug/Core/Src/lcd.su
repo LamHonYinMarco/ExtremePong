@@ -17,3 +17,8 @@
 ../Core/Src/lcd.cpp:417:6:void LCD_DrawString(uint16_t, uint16_t, const char*)	16	static
 ../Core/Src/lcd.cpp:445:6:void LCD_DrawDot(uint16_t, uint16_t, uint16_t)	16	static
 ../Core/Src/lcd.cpp:456:6:void LCD_DrawEllipse(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	48	static
+../Core/Src/lcd.cpp:467:6:void LCD_DrawBall(uint16_t, uint16_t, uint16_t)	40	static
+../Core/Src/lcd.cpp:474:6:void LCD_MoveBall(uint16_t, uint16_t, uint16_t, uint16_t)	24	static
+../Core/Src/lcd.cpp:480:6:void LCD_DrawPlayer(uint16_t, uint16_t, uint16_t)	40	static
+../Core/Src/lcd.cpp:485:6:void LCD_MovePlayer(uint16_t, uint16_t, uint16_t, uint16_t)	24	static
+../Core/Src/lcd.cpp:491:6:void LCD_DrawNet()	16	static

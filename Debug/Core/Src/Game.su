@@ -1,7 +1,15 @@
-../Core/Src/Game.cpp:3:1:Game::Game()	24	static
-../Core/Src/Game.cpp:6:6:void Game::setStart(bool)	16	static
-../Core/Src/Game.cpp:9:6:bool Game::getStart()	16	static
-../Core/Src/Game.cpp:12:6:void Game::quit()	16	static
-../Core/Src/Game.cpp:19:6:void Game::restart()	16	static
-../Core/Src/Game.cpp:24:1:Game::~Game()	24	static
-../Core/Src/Game.cpp:24:1:virtual Game::~Game()	16	static
+../Core/Src/Game.cpp:4:1:Game::Game()	24	static
+../Core/Src/Game.cpp:7:6:void Game::setStart(bool)	16	static
+../Core/Src/Game.cpp:10:6:bool Game::getStart()	16	static
+../Core/Src/Game.cpp:13:6:void Game::quit()	16	static
+../Core/Src/Game.cpp:22:6:void Game::restart()	16	static
+../Core/Src/Game.cpp:28:6:void Game::knockback()	16	static
+../Core/Src/Game.cpp:33:6:bool Game::checkCollision(int)	24	static
+../Core/Src/Game.cpp:50:6:void Game::moveBall()	48	static
+../Core/Src/Game.cpp:119:6:void Game::botMovement()	40	static
+../Core/Inc/Ball.h:4:7:constexpr Ball& Ball::operator=(const Ball&)	16	static
+../Core/Src/Game.cpp:179:6:void Game::displayBallMovement()	40	static
+../Core/Src/Game.cpp:186:6:void Game::displayPlayerMovement(int)	32	static
+../Core/Src/Game.cpp:206:6:void Game::gaming()	16	static
+../Core/Src/Game.cpp:233:1:Game::~Game()	24	static
+../Core/Src/Game.cpp:233:1:virtual Game::~Game()	16	static

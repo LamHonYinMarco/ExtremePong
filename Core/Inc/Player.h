@@ -4,16 +4,17 @@
 class Player {
 private:
 	int playerNumber;
-	double location;
+	int location;
 
 
 public:
+	enum playerNumbers{player1 = 0, player2 = 1};
 	Score score;
 	Player(int playerNumber);
 //	void setPlayerNumber(int playerNumber);
 	int getPlayerNumber();
 	void setLocation(double location);
-	double getLocation();
+	int getLocation();
 	void displayPlayerLocation();
 //	Score getScore();
 	virtual ~Player();

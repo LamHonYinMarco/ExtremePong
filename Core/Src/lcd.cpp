@@ -463,5 +463,36 @@ void LCD_DrawEllipse ( uint16_t usC, uint16_t usP, uint16_t SR, uint16_t LR, uin
 	}
 }
 
+// Input location of the top left pixel of the ball
+void LCD_DrawBall ( uint16_t usC, uint16_t usP, uint16_t usColor )
+{
+	for (int i=0; i <= ballWidith; i++) {
+		LCD_DrawLine(usC,usP+i,usC+ballWidith,usP+i,usColor);
+	}
+}
+// Current location first then new location
+void LCD_MoveBall (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2)
+{
+	LCD_DrawBall (usC1,usP1,BLACK);
+	LCD_DrawBall (usC2,usP2,WHITE);
+}
+
+void LCD_DrawPlayer ( uint16_t usC, uint16_t usP, uint16_t usColor ){
+	for(int i = 0; i<=playerHeight;i++){
+		LCD_DrawLine(usC,usP+i,usC+playerWidith,usP+i,usColor);
+	}
+}
+void LCD_MovePlayer (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2)
+{
+	LCD_DrawPlayer (usC1,usP1,BLACK);
+	LCD_DrawPlayer (usC2,usP2,WHITE);
+}
+
+void LCD_DrawNet(){
+	for(int i=0; i<LCD_DispWindow_COLUMN; i+=5){
+				LCD_DrawDot(i,LCD_DispWindow_PAGE/2,WHITE);
+			}
+}
+
 
 

@@ -6,7 +6,6 @@ private:
 
 public:
 	int x,y;
-//	double speed;
 	int dx,dy;
 	Ball();
 	void reset();

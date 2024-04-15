@@ -4,11 +4,11 @@
 class Menu {
 private:
 	int currentMenu;
-	Settings settings;
+
 public:
 	enum menuNames{homeScreen,singlePlayerOptionsScreen,settingsScreen,vsBotGame,vsWallGame,twoPlayersGame,WinScreen,LoseScreen};
+	Settings settings;
 	Menu();
-	//TODO onClickListener
 	void setCurrentMenu(int menu);
 	void displayCurrentMenu();
 	int getCurrentMenu();
