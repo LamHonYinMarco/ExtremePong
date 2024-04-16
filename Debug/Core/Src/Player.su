@@ -1,7 +1,9 @@
-../Core/Src/Player.cpp:3:1:Player::Player(int)	16	static
-../Core/Src/Player.cpp:8:5:int Player::getPlayerNumber()	16	static
-../Core/Src/Player.cpp:11:6:void Player::displayPlayerLocation()	16	static
-../Core/Src/Player.cpp:14:6:void Player::setLocation(double)	24	static
-../Core/Src/Player.cpp:18:5:int Player::getLocation()	16	static
-../Core/Src/Player.cpp:24:1:Player::~Player()	16	static
-../Core/Src/Player.cpp:24:1:virtual Player::~Player()	16	static
+../Core/Src/Player.cpp:4:1:Player::Player(int)	16	static
+../Core/Src/Player.cpp:14:6:void Player::resetX()	16	static
+../Core/Src/Player.cpp:17:5:int Player::getPlayerNumber()	16	static
+../Core/Src/Player.cpp:20:6:void Player::setX(int)	16	static
+../Core/Src/Player.cpp:23:5:int Player::getX()	16	static
+../Core/Src/Player.cpp:26:6:void Player::setY(int)	16	static
+../Core/Src/Player.cpp:29:5:int Player::getY()	16	static
+../Core/Src/Player.cpp:33:1:Player::~Player()	16	static
+../Core/Src/Player.cpp:33:1:virtual Player::~Player()	16	static

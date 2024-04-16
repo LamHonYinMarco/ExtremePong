@@ -55,6 +55,8 @@
 #define ballWidith 5
 #define playerWidith 45
 #define playerHeight 5
+#define player1YAxis 300
+#define player2YAxis 20
 
 void            LCD_INIT		( void );
 void            LCD_Rst			( void );

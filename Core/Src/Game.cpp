@@ -12,17 +12,21 @@ bool Game::getStart() {
 }
 void Game::quit() {
 	start = false;
-	player[0].score.setPoint(0);
-	player[1].score.setPoint(0);
-	player[0].setLocation(98);
-	player[1].setLocation(98);
+	player[Player::player1].score.setPoint(0);
+	player[Player::player2].score.setPoint(0);
+	player[Player::player1].resetX();
+	player[Player::player2].resetX();
 	ball.reset();
 	menu.setCurrentMenu(Menu::homeScreen);
 }
 void Game::restart() {
-	player[0].score.setPoint(0);
-	player[1].score.setPoint(0);
+	start = false;
+	player[Player::player1].score.setPoint(0);
+	player[Player::player2].score.setPoint(0);
+	player[Player::player1].resetX();
+	player[Player::player2].resetX();
 	ball.reset();
+	menu.setCurrentMenu(menu.getCurrentMenu());
 }
 
 void Game::knockback() {
@@ -32,22 +36,22 @@ void Game::knockback() {
 
 bool Game::checkCollision(int playerNumber) {
 	if (playerNumber == Player::player1) {
-		if (ball.y + ballWidith < 300) {
+		if (ball.y + ballWidith < player1YAxis) {
 			return false;
 		}
 	}
 	if (playerNumber == Player::player2) {
-		if (ball.y > 20) {
+		if (ball.y > player2YAxis) {
 			return false;
 		}
 	}
-	if ((ball.x >= player[playerNumber].getLocation())
-			&& (ball.x <= player[playerNumber].getLocation() + playerWidith)) {
+	if ((ball.x >= player[playerNumber].getX())
+			&& (ball.x <= player[playerNumber].getX() + playerWidith)) {
 		return true;
 	}
 	return false;
 }
-void Game::moveBall() {
+bool Game::moveBall() {
 	// update ball location according to vector
 	ball.x += ball.dx;
 	ball.y += ball.dy;
@@ -55,7 +59,7 @@ void Game::moveBall() {
 	if (menu.getCurrentMenu() == Menu::vsWallGame && ball.y <= wallWidith) {
 		ball.dy = -ball.dy;
 		ball.y = wallWidith + 1;
-		return;
+		return true;
 	}
 
 	// check if ball hit wall
@@ -78,16 +82,16 @@ void Game::moveBall() {
 			// increase ball speed and move back within broad
 			if (ball.dy < 0) {
 				ball.dy -= menu.settings.getBallSpeedIncreaseRate();
-				ball.y = 20 + 1;
+				ball.y = player2YAxis + 1;
 			} else {
 				ball.dy += menu.settings.getBallSpeedIncreaseRate();
-				ball.y = 300 - ballWidith - 1;
+				ball.y = player1YAxis - ballWidith - 1;
 			}
 			// change ball direction
 			ball.dy = -ball.dy;
 
 			//change ball angle based on where on the paddle it hit
-			int hitPosition = (player[i].getLocation() + playerWidith) - ball.x;
+			int hitPosition = (player[i].getX() + playerWidith) - ball.x;
 			double paddlePosition = playerWidith / 9;
 			int direction = 4;
 			for (int i = 0; i < 9; i++) {
@@ -102,10 +106,11 @@ void Game::moveBall() {
 	}
 
 	// check if player2 / bot won
-	if (ball.y + ballWidith >= 319) {
+	if (ball.y + ballWidith >= 320) {
 		player[Player::player2].score.setPoint(
 				player[Player::player2].score.getPoint() + 1);
 		ball.reset();
+		return false;
 	}
 
 	// check if player1 won
@@ -113,11 +118,13 @@ void Game::moveBall() {
 		player[Player::player1].score.setPoint(
 				player[Player::player1].score.getPoint() + 1);
 		ball.reset();
+		return false;
 	}
+	return true;
 }
 
 void Game::botMovement() {
-	int center = player[Player::player2].getLocation() + (playerWidith / 2);
+	int center = player[Player::player2].getX() + (playerWidith / 2);
 	int screenCenter = LCD_DispWindow_COLUMN / 2;
 	int ballSpeed = abs(ball.dx);
 
@@ -125,52 +132,52 @@ void Game::botMovement() {
 	if (ball.dy > 0) {
 		//return to center position
 		if (center < screenCenter) {
-			player[Player::player2].setLocation(
-					player[Player::player2].getLocation() + ballSpeed);
+			player[Player::player2].setX(
+					player[Player::player2].getX() + ballSpeed);
 		} else {
-			player[Player::player2].setLocation(
-					player[Player::player2].getLocation() - ballSpeed);
+			player[Player::player2].setX(
+					player[Player::player2].getX() - ballSpeed);
 		}
 		//ball moving left
 	} else {
 		//ball moving down
 		if (ball.dx > 0) {
 			if (ball.x > center) {
-				player[Player::player2].setLocation(
-						player[Player::player2].getLocation() + ballSpeed);
+				player[Player::player2].setX(
+						player[Player::player2].getX() + ballSpeed);
 			} else {
-				player[Player::player2].setLocation(
-						player[Player::player2].getLocation() - ballSpeed);
+				player[Player::player2].setX(
+						player[Player::player2].getX() - ballSpeed);
 			}
 		}
 		//ball moving up
 		if (ball.dx < 0) {
 			if (ball.x < center) {
-				player[Player::player2].setLocation(
-						player[Player::player2].getLocation() - ballSpeed);
+				player[Player::player2].setX(
+						player[Player::player2].getX() - ballSpeed);
 			} else {
-				player[Player::player2].setLocation(
-						player[Player::player2].getLocation() + ballSpeed);
+				player[Player::player2].setX(
+						player[Player::player2].getX() + ballSpeed);
 			}
 		}
 		//ball moving stright across
 		if (ball.dx == 0) {
 			if (ball.x < center) {
-				player[Player::player2].setLocation(
-						player[Player::player2].getLocation() - 5);
+				player[Player::player2].setX(
+						player[Player::player2].getX() - 5);
 			} else {
-				player[Player::player2].setLocation(
-						player[Player::player2].getLocation() + 5);
+				player[Player::player2].setX(
+						player[Player::player2].getX() + 5);
 			}
 		}
 	}
 	// make sure it is within broad
-	if (player[Player::player2].getLocation() <= wallWidith) {
-		player[Player::player2].setLocation(wallWidith + 1);
+	if (player[Player::player2].getX() <= wallWidith) {
+		player[Player::player2].setX(wallWidith + 1);
 	}
-	if (player[Player::player2].getLocation() + playerWidith
+	if (player[Player::player2].getX() + playerWidith
 			>= LCD_DispWindow_COLUMN - wallWidith) {
-		player[Player::player2].setLocation(
+		player[Player::player2].setX(
 		LCD_DispWindow_COLUMN - wallWidith - playerWidith - 1);
 	}
 
@@ -179,40 +186,50 @@ void Game::botMovement() {
 void Game::displayBallMovement() {
 	Ball tempBall;
 	tempBall = ball;
-	moveBall();
-	LCD_MoveBall(tempBall.x, tempBall.y, ball.x, ball.y);
+	if(moveBall()){ // ball moved
+		LCD_MoveBall(tempBall.x, tempBall.y, ball.x, ball.y);
+	}else{ // ball position reset
+		LCD_DrawBall (tempBall.x,tempBall.y,BLACK);
+		LCD_DrawBall (ball.x,ball.y,WHITE);
+	}
 }
 
 void Game::displayPlayerMovement(int playerNumber) {
-	int tempPlayerLocation;
-	tempPlayerLocation = player[playerNumber].getLocation();
+	int tempPlayerX;
+	tempPlayerX = player[playerNumber].getX();
 	if (menu.getCurrentMenu() == Menu::vsBotGame
 			&& playerNumber == Player::player2) {
 		botMovement();
-		LCD_MovePlayer(tempPlayerLocation, 20 - playerHeight,
-				player[Player::player2].getLocation(), 20 - playerHeight);
-		return;
-	}
-	// player[playerNumber].setLocation(); // TODO set location
-	if (playerNumber == Player::player1) {
-		LCD_MovePlayer(tempPlayerLocation, 300,
-				player[Player::player1].getLocation(), 300);
 	} else {
-		LCD_MovePlayer(tempPlayerLocation, 20 - playerHeight,
-				player[Player::player2].getLocation(), 20 - playerHeight);
+		// player[playerNumber].setX(); // TODO set location
 	}
+
+	LCD_MovePlayer(tempPlayerX, player[playerNumber].getY(),
+			player[playerNumber].getX(), player[playerNumber].getY());
 }
 
 void Game::gaming() {
 
 	switch (menu.getCurrentMenu()) {
 	case Menu::vsWallGame:
+		if (!start) {
+			LCD_DrawPlayer(player[Player::player1].getX(),
+					player[Player::player1].getY(), WHITE);
+			LCD_DrawBall(ball.x, ball.y, WHITE);
+		}
 		setStart(true);
 		displayPlayerMovement(Player::player1);
 		displayBallMovement();
 		LCD_DrawNet();
 		break;
 	case Menu::vsBotGame:
+		if (!start) {
+			LCD_DrawPlayer(player[Player::player1].getX(),
+					player[Player::player1].getY(), WHITE);
+			LCD_DrawPlayer(player[Player::player2].getX(),
+					player[Player::player2].getY(), WHITE);
+			LCD_DrawBall(ball.x, ball.y, WHITE);
+		}
 		setStart(true);
 		displayPlayerMovement(Player::player1);
 		displayPlayerMovement(Player::player2);
@@ -220,6 +237,13 @@ void Game::gaming() {
 		LCD_DrawNet();
 		break;
 	case Menu::twoPlayersGame:
+		if (!start) {
+			LCD_DrawPlayer(player[Player::player1].getX(),
+					player[Player::player1].getY(), WHITE);
+			LCD_DrawPlayer(player[Player::player2].getX(),
+					player[Player::player2].getY(), WHITE);
+			LCD_DrawBall(ball.x, ball.y, WHITE);
+		}
 		setStart(true);
 		displayPlayerMovement(Player::player1);
 		displayPlayerMovement(Player::player2);

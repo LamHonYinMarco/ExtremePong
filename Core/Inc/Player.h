@@ -4,19 +4,20 @@
 class Player {
 private:
 	int playerNumber;
-	int location;
-
+	int x;
+	int y;
 
 public:
 	enum playerNumbers{player1 = 0, player2 = 1};
 	Score score;
 	Player(int playerNumber);
-//	void setPlayerNumber(int playerNumber);
 	int getPlayerNumber();
-	void setLocation(double location);
-	int getLocation();
-	void displayPlayerLocation();
-//	Score getScore();
+	void setX(int x);
+	int getX();
+	void setY(int y);
+	int getY();
+	void resetX();
+	// TODO write a function to find x and make sure x is valid smt like findAndSetX()
 	virtual ~Player();
 };
 
