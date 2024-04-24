@@ -1,9 +1,11 @@
-../Core/Src/Player.cpp:4:1:Player::Player(int)	16	static
-../Core/Src/Player.cpp:14:6:void Player::resetX()	16	static
-../Core/Src/Player.cpp:17:5:int Player::getPlayerNumber()	16	static
-../Core/Src/Player.cpp:20:6:void Player::setX(int)	16	static
-../Core/Src/Player.cpp:23:5:int Player::getX()	16	static
-../Core/Src/Player.cpp:26:6:void Player::setY(int)	16	static
-../Core/Src/Player.cpp:29:5:int Player::getY()	16	static
-../Core/Src/Player.cpp:33:1:Player::~Player()	16	static
-../Core/Src/Player.cpp:33:1:virtual Player::~Player()	16	static
+../Core/Src/Player.cpp:5:1:Player::Player(int)	16	static
+../Core/Src/Player.cpp:15:6:void Player::resetX()	16	static
+../Core/Src/Player.cpp:18:5:int Player::getPlayerNumber()	16	static
+../Core/Src/Player.cpp:21:6:void Player::setX(int)	16	static
+../Core/Src/Player.cpp:24:5:int Player::getX()	16	static
+../Core/Src/Player.cpp:27:6:void Player::setY(int)	16	static
+../Core/Src/Player.cpp:30:5:int Player::getY()	16	static
+../Core/Src/Player.cpp:33:6:void Player::setADC_HandleTypeDef(ADC_HandleTypeDef*)	16	static
+../Core/Src/Player.cpp:36:6:void Player::findAndSetX()	24	static
+../Core/Src/Player.cpp:45:1:Player::~Player()	16	static
+../Core/Src/Player.cpp:45:1:virtual Player::~Player()	16	static

@@ -201,7 +201,7 @@ void Game::displayPlayerMovement(int playerNumber) {
 			&& playerNumber == Player::player2) {
 		botMovement();
 	} else {
-		// player[playerNumber].setX(); // TODO set location
+		 player[playerNumber].findAndSetX(); // TODO set location
 	}
 
 	LCD_MovePlayer(tempPlayerX, player[playerNumber].getY(),

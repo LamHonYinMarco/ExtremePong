@@ -1,6 +1,7 @@
 #include <Player.h>
 #include "lcd.h"
 
+
 Player::Player(int playerNumber) :
 		score(playerNumber) {
 	this->playerNumber = playerNumber;
@@ -29,7 +30,18 @@ void Player::setY(int y) {
 int Player::getY() {
 	return y;
 }
-
+void Player::setADC_HandleTypeDef(ADC_HandleTypeDef *hadc){
+	this->hadc = hadc;
+}
+void Player::findAndSetX(){
+	int ADCValueInt;
+		HAL_ADC_Start(hadc);
+		HAL_ADC_PollForConversion(hadc, 1000);
+		ADCValueInt = HAL_ADC_GetValue(hadc);
+		//TODO this->x = ADCValueInt; // Change the value of x to wallWidith to (LCD_DispWindow_COLUMN-wallWidith-playerWidith)
+		//In more human language, The x=3 means player is touching the left wall. x=192 means player is touching the right wall.
+		//The goal is to translate ADCValueInt into a value between 3 to 192.
+}
 Player::~Player() {
 }
 
