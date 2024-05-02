@@ -23,7 +23,7 @@ public:
 	void knockback();
 	void botMovement();
 	void gaming();
-	//TODO get player location function
+	void displayWinner(int playerNumber);
 	void displayBallMovement();
 	void displayPlayerMovement(int playerNumber);
 	virtual ~Game();

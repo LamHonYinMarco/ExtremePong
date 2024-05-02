@@ -12,6 +12,7 @@ public:
 	int getPoint();
 	void setPoint(int point);
 	void displayPoint();
+	void turnOffDisplay();
 	void endGame();
 	virtual ~Score();
 };

@@ -1,6 +1,7 @@
 #include <Game.h>
 #include "lcd.h"
 #include <stdlib.h>
+#include <stdio.h>
 Game::Game() {
 	start = false;
 }
@@ -14,6 +15,8 @@ void Game::quit() {
 	start = false;
 	player[Player::player1].score.setPoint(0);
 	player[Player::player2].score.setPoint(0);
+	player[Player::player1].score.turnOffDisplay();
+	player[Player::player2].score.turnOffDisplay();
 	player[Player::player1].resetX();
 	player[Player::player2].resetX();
 	ball.reset();
@@ -21,8 +24,6 @@ void Game::quit() {
 }
 void Game::restart() {
 	start = false;
-	player[Player::player1].score.setPoint(0);
-	player[Player::player2].score.setPoint(0);
 	player[Player::player1].resetX();
 	player[Player::player2].resetX();
 	ball.reset();
@@ -186,11 +187,11 @@ void Game::botMovement() {
 void Game::displayBallMovement() {
 	Ball tempBall;
 	tempBall = ball;
-	if(moveBall()){ // ball moved
+	if (moveBall()) { // ball moved
 		LCD_MoveBall(tempBall.x, tempBall.y, ball.x, ball.y);
-	}else{ // ball position reset
-		LCD_DrawBall (tempBall.x,tempBall.y,BLACK);
-		LCD_DrawBall (ball.x,ball.y,WHITE);
+	} else { // ball position reset
+		LCD_DrawBall(tempBall.x, tempBall.y, BLACK);
+		LCD_DrawBall(ball.x, ball.y, WHITE);
 	}
 }
 
@@ -201,11 +202,24 @@ void Game::displayPlayerMovement(int playerNumber) {
 			&& playerNumber == Player::player2) {
 		botMovement();
 	} else {
-		 player[playerNumber].findAndSetX(); // TODO set location
+		player[playerNumber].findAndSetX(); // TODO set location
 	}
 
 	LCD_MovePlayer(tempPlayerX, player[playerNumber].getY(),
 			player[playerNumber].getX(), player[playerNumber].getY());
+}
+
+void Game::displayWinner(int playerNumber){
+
+	LCD_Clear(LCD_DispWindow_Start_COLUMN, LCD_DispWindow_Start_PAGE,
+			LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
+	if(menu.getCurrentMenu() == Menu::vsBotGame && playerNumber == Player::player2){
+		LCD_DrawString(90,LCD_DispWindow_PAGE/2 , "YOU LOSE");
+		return;
+	}
+	char displayText[20];
+	sprintf(displayText, "PLAYER %d WINS", playerNumber+1);
+	LCD_DrawString(70,LCD_DispWindow_PAGE/2 , displayText);
 }
 
 void Game::gaming() {
@@ -216,6 +230,8 @@ void Game::gaming() {
 			LCD_DrawPlayer(player[Player::player1].getX(),
 					player[Player::player1].getY(), WHITE);
 			LCD_DrawBall(ball.x, ball.y, WHITE);
+			player[Player::player1].score.setPoint(10);
+			player[Player::player2].score.setPoint(10);
 		}
 		setStart(true);
 		displayPlayerMovement(Player::player1);
@@ -229,6 +245,8 @@ void Game::gaming() {
 			LCD_DrawPlayer(player[Player::player2].getX(),
 					player[Player::player2].getY(), WHITE);
 			LCD_DrawBall(ball.x, ball.y, WHITE);
+			player[Player::player1].score.setPoint(0);
+			player[Player::player2].score.setPoint(0);
 		}
 		setStart(true);
 		displayPlayerMovement(Player::player1);
@@ -243,6 +261,8 @@ void Game::gaming() {
 			LCD_DrawPlayer(player[Player::player2].getX(),
 					player[Player::player2].getY(), WHITE);
 			LCD_DrawBall(ball.x, ball.y, WHITE);
+			player[Player::player1].score.setPoint(0);
+			player[Player::player2].score.setPoint(0);
 		}
 		setStart(true);
 		displayPlayerMovement(Player::player1);
@@ -252,6 +272,18 @@ void Game::gaming() {
 		break;
 	default:
 		;
+	}
+	if (player[Player::player1].score.getPoint()
+			== menu.settings.getPointsNeeded()) {
+		displayWinner(Player::player1);
+		HAL_Delay(5000);
+		quit();
+	}
+	if (player[Player::player2].score.getPoint()
+			== menu.settings.getPointsNeeded()) {
+		displayWinner(Player::player2);
+		HAL_Delay(5000);
+		quit();
 	}
 }
 Game::~Game() {
