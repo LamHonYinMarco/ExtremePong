@@ -59,6 +59,8 @@
 #define player2YAxis 20
 #define playerNotTouching 8000
 #define rheostatMaximumValue 4050
+#define startingDelay 200
+#define maximumDelay 2000
 
 void            LCD_INIT		( void );
 void            LCD_Rst			( void );

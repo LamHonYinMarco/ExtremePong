@@ -30,8 +30,28 @@ void Game::restart() {
 	menu.setCurrentMenu(menu.getCurrentMenu());
 }
 
-void Game::knockback() {
+void Game::knockback(int playerNumber) {
 	//TODO
+	int pulse = 100, delay = startingDelay; // TODO change pulse
+	pulse *= ball.dy;
+	//	MX_TIM4_Init(pulse);
+	if (playerNumber == Player::player1) {
+		//	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
+		if (startingDelay * ball.dy >= maximumDelay) {
+			HAL_Delay(maximumDelay);
+		} else {
+			HAL_Delay(delay * ball.dy);
+		}
+		//	HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_1); // no idea if this will work, might need to do pulse stuff
+	} else {
+		//	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
+		if (startingDelay * ball.dy >= maximumDelay) {
+			HAL_Delay(maximumDelay);
+		} else {
+			HAL_Delay(delay * ball.dy);
+		}
+		//	HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_2);
+	}
 
 }
 
@@ -83,9 +103,16 @@ bool Game::moveBall() {
 			// increase ball speed and move back within broad
 			if (ball.dy < 0) {
 				ball.dy -= menu.settings.getBallSpeedIncreaseRate();
+				if (menu.getCurrentMenu() != Menu::vsBotGame
+						&& menu.settings.getKnockback()) {
+					knockback(Player::player2);
+				}
 				ball.y = player2YAxis + 1;
 			} else {
 				ball.dy += menu.settings.getBallSpeedIncreaseRate();
+				if (menu.settings.getKnockback()) {
+					knockback(Player::player1);
+				}
 				ball.y = player1YAxis - ballWidith - 1;
 			}
 			// change ball direction
@@ -209,17 +236,18 @@ void Game::displayPlayerMovement(int playerNumber) {
 			player[playerNumber].getX(), player[playerNumber].getY());
 }
 
-void Game::displayWinner(int playerNumber){
+void Game::displayWinner(int playerNumber) {
 
 	LCD_Clear(LCD_DispWindow_Start_COLUMN, LCD_DispWindow_Start_PAGE,
-			LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
-	if(menu.getCurrentMenu() == Menu::vsBotGame && playerNumber == Player::player2){
-		LCD_DrawString(90,LCD_DispWindow_PAGE/2 , "YOU LOSE");
+	LCD_DispWindow_COLUMN, LCD_DispWindow_PAGE, BLACK);
+	if (menu.getCurrentMenu() == Menu::vsBotGame
+			&& playerNumber == Player::player2) {
+		LCD_DrawString(90, LCD_DispWindow_PAGE / 2, "YOU LOSE");
 		return;
 	}
 	char displayText[20];
-	sprintf(displayText, "PLAYER %d WINS", playerNumber+1);
-	LCD_DrawString(70,LCD_DispWindow_PAGE/2 , displayText);
+	sprintf(displayText, "PLAYER %d WINS", playerNumber + 1);
+	LCD_DrawString(70, LCD_DispWindow_PAGE / 2, displayText);
 }
 
 void Game::gaming() {

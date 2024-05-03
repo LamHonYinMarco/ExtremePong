@@ -109,9 +109,6 @@ int main(void)
 	Game game;
 	game.player[Player::player1].setADC_HandleTypeDef(&hadc1);
 	game.player[Player::player2].setADC_HandleTypeDef(&hadc2);
-	// TODO setADC for player2 when that is done
-//	HAL_ADC_Start(&hadc1);
-//			HAL_ADC_PollForConversion(&hadc1, 1000);
 //game.menu.setCurrentMenu(Menu::vsBotGame);
 	game.menu.displayCurrentMenu();
 //	MX_TIM4_Init(0);
@@ -119,9 +116,6 @@ int main(void)
 //	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
 //	HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_1);
 //	HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_2);
-//	LCD_DrawBall(120,150,WHITE);
-//	LCD_DrawPlayer(120,300,WHITE);
-//	LCD_DrawPlayer(120,20-playerHeight,WHITE);
   /* USER CODE END 2 */
 
   /* Infinite loop */

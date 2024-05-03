@@ -20,7 +20,7 @@ public:
 	void restart();
 	bool checkCollision(int playerNumber);
 	bool moveBall();
-	void knockback();
+	void knockback(int playerNumber);
 	void botMovement();
 	void gaming();
 	void displayWinner(int playerNumber);
