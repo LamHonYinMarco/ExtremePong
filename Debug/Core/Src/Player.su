@@ -7,5 +7,5 @@
 ../Core/Src/Player.cpp:30:5:int Player::getY()	16	static
 ../Core/Src/Player.cpp:33:6:void Player::setADC_HandleTypeDef(ADC_HandleTypeDef*)	16	static
 ../Core/Src/Player.cpp:36:6:void Player::findAndSetX()	24	static
-../Core/Src/Player.cpp:45:1:Player::~Player()	16	static
-../Core/Src/Player.cpp:45:1:virtual Player::~Player()	16	static
+../Core/Src/Player.cpp:47:1:Player::~Player()	16	static
+../Core/Src/Player.cpp:47:1:virtual Player::~Player()	16	static
