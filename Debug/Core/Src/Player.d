@@ -27,7 +27,7 @@ Core/Src/Player.o: ../Core/Src/Player.cpp ../Core/Inc/Player.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Core/Inc/lcd.h
+ ../Core/Inc/lcd.h ../Core/Inc/main.h
 ../Core/Inc/Player.h:
 ../Core/Inc/Score.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -59,3 +59,4 @@ Core/Src/Player.o: ../Core/Src/Player.cpp ../Core/Inc/Player.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Core/Inc/lcd.h:
+../Core/Inc/main.h:

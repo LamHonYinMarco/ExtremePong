@@ -232,6 +232,7 @@ void Game::gaming() {
 			LCD_DrawBall(ball.x, ball.y, WHITE);
 			player[Player::player1].score.setPoint(10);
 			player[Player::player2].score.setPoint(10);
+			player[Player::player2].setX(playerNotTouching);
 		}
 		setStart(true);
 		displayPlayerMovement(Player::player1);

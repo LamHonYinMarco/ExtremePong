@@ -1,6 +1,6 @@
 #include <Player.h>
 #include "lcd.h"
-
+#include "main.h"
 
 Player::Player(int playerNumber) :
 		score(playerNumber) {
@@ -12,8 +12,8 @@ Player::Player(int playerNumber) :
 		y = player2YAxis - playerHeight; // - height to get top left pixel
 	}
 }
-void Player::resetX(){
-	x = (LCD_DispWindow_COLUMN/2)-(playerWidith/2); // center position
+void Player::resetX() {
+	x = (LCD_DispWindow_COLUMN / 2) - (playerWidith / 2); // center position
 }
 int Player::getPlayerNumber() {
 	return playerNumber;
@@ -30,19 +30,39 @@ void Player::setY(int y) {
 int Player::getY() {
 	return y;
 }
-void Player::setADC_HandleTypeDef(ADC_HandleTypeDef *hadc){
+void Player::setADC_HandleTypeDef(ADC_HandleTypeDef *hadc) {
 	this->hadc = hadc;
 }
-void Player::findAndSetX(){
-	int ADCValueInt;
-		HAL_ADC_Start(hadc);
-		HAL_ADC_PollForConversion(hadc, 1000);
-		playerNumber;
-		ADCValueInt = HAL_ADC_GetValue(hadc);
-		ADCValueInt;
-		//TODO this->x = ADCValueInt; // Change the value of x to wallWidith to (LCD_DispWindow_COLUMN-wallWidith-playerWidith)
-		//In more human language, The x=3 means player is touching the left wall. x=192 means player is touching the right wall.
-		//The goal is to translate ADCValueInt into a value between 3 to 192.
+void Player::findAndSetX() {
+	int ADCValueInt, inputPin, x;
+	if (playerNumber == player1) { // check if player is touching the rheostat
+		inputPin = HAL_GPIO_ReadPin(player1Touch_GPIO_Port, player1Touch_Pin);
+	} else {
+		inputPin = HAL_GPIO_ReadPin(player2Touch_GPIO_Port, player2Touch_Pin);
+	}
+	if (inputPin == 0) {
+		this->x = playerNotTouching;
+		return;
+	}
+
+	// ask ADC to get value
+	HAL_ADC_Start(hadc);
+	HAL_ADC_PollForConversion(hadc, 1000);
+	ADCValueInt = HAL_ADC_GetValue(hadc);
+
+	x = (ADCValueInt * (LCD_DispWindow_COLUMN - wallWidith - playerWidith))
+			/ rheostatMaximumValue; // translate ADC value to x position
+
+	// make sure x is within broad and set its value
+	if (x <= wallWidith) {
+		this->x = wallWidith + 1;
+		return;
+	}
+	if (x + playerWidith >= LCD_DispWindow_COLUMN - wallWidith) {
+		this->x = LCD_DispWindow_COLUMN - wallWidith - playerWidith - 1;
+		return;
+	}
+	this->x = x;
 }
 Player::~Player() {
 }

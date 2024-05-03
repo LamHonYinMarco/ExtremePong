@@ -91,6 +91,8 @@ void Error_Handler(void);
 #define a2_GPIO_Port GPIOC
 #define f2_Pin GPIO_PIN_7
 #define f2_GPIO_Port GPIOC
+#define player2Touch_Pin GPIO_PIN_8
+#define player2Touch_GPIO_Port GPIOA
 #define player1Touch_Pin GPIO_PIN_11
 #define player1Touch_GPIO_Port GPIOA
 #define b2_Pin GPIO_PIN_8

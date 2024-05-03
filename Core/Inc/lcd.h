@@ -57,6 +57,8 @@
 #define playerHeight 5
 #define player1YAxis 300
 #define player2YAxis 20
+#define playerNotTouching 8000
+#define rheostatMaximumValue 4050
 
 void            LCD_INIT		( void );
 void            LCD_Rst			( void );
@@ -79,6 +81,7 @@ void	LCD_MoveBall (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2);
 void 	LCD_DrawPlayer ( uint16_t usC, uint16_t usP, uint16_t usColor );
 void	LCD_MovePlayer (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2);
 void	LCD_DrawNet ();
+bool	checkTouch(uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2);
 
 #endif 
 

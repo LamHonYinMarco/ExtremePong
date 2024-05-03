@@ -445,9 +445,26 @@ void LCD_DrawPlayer(uint16_t usC, uint16_t usP, uint16_t usColor) {
 		LCD_DrawLine(usC, usP + i, usC + playerWidith, usP + i, usColor);
 	}
 }
+
+// return true if previous and current are touching, otherwise false
+bool checkTouch(uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2){
+	if(usC1 == playerNotTouching && usC2 == playerNotTouching){
+		return false;
+	}else if(usC2 == playerNotTouching){
+		LCD_DrawPlayer(usC1, usP1, BLACK);
+			return false;
+	}else if(usC1 == playerNotTouching){
+		LCD_DrawPlayer(usC2, usP2, WHITE);
+		return false;
+	}
+	return true;
+}
+
 void LCD_MovePlayer(uint16_t usC1, uint16_t usP1, uint16_t usC2,
 		uint16_t usP2) {
-
+	if(!checkTouch(usC1,usP1,usC2,usP2)){
+		return;
+	}
 	int displacement = usC1 - usC2;
 	int absDisplacement = abs(displacement);
 	if (absDisplacement >= playerWidith) { // whole player display needs to be updated

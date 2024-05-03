@@ -126,10 +126,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	int inputPin;
+//	int inputPin;
 	while (1) {
-		inputPin = HAL_GPIO_ReadPin(GPIOA, player1Touch_Pin);
-		inputPin;
+//		inputPin = HAL_GPIO_ReadPin(GPIOA, player1Touch_Pin);
+//		inputPin;
 		if (ucXPT2046_TouchFlag == 1) {
 			if (game.getStart() == false) { // touch functions allowed only when game has not started
 				game.menu.onClickListiener();
@@ -462,11 +462,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : player1Touch_Pin */
-  GPIO_InitStruct.Pin = player1Touch_Pin;
+  /*Configure GPIO pins : player2Touch_Pin player1Touch_Pin */
+  GPIO_InitStruct.Pin = player2Touch_Pin|player1Touch_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init(player1Touch_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
