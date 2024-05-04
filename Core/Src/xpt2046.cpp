@@ -498,33 +498,4 @@ uint8_t XPT2046_Get_TouchedPoint ( strType_XPT2046_Coordinate * pDisplayCoordina
 } 
 
 
-//void Check_touchkey(int currentMenu)
-//{
-//		strType_XPT2046_Coordinate strDisplayCoordinate;
-//		if ( !XPT2046_Get_TouchedPoint ( & strDisplayCoordinate, & strXPT2046_TouchPara ) ){
-//			return;
-//		}
-//		switch (currentMenu) {
-//			case homeScreen:
-//				if ( ( strDisplayCoordinate .y > 232 ) && ( strDisplayCoordinate .y < 282 ) )
-//						{
-//							if ( ( strDisplayCoordinate .x > 95 ) && ( strDisplayCoordinate .x < 145 ) )
-//							{
-//				//				TODO return
-//							}
-//						}
-//
-//				break;
-//			case singlePlayerOptionsScreen:
-//
-//				break;
-//			case settingsScreen:
-//
-//				break;
-//			default:
-//				;
-//			}
-//}
-
-
 

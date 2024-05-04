@@ -21,8 +21,6 @@ public:
 	int getY();
 	void resetX();
 	void setADC_HandleTypeDef(ADC_HandleTypeDef *hadc);
-
-	// TODO write a function to find x and make sure x is valid smt like findAndSetX()
 	void findAndSetX();
 	virtual ~Player();
 };

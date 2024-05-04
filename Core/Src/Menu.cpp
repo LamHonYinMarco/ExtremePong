@@ -110,7 +110,6 @@ void Menu::setCurrentMenu(int menu) {
 	currentMenu = menu;
 	displayCurrentMenu();
 }
-// TODO onClickListiener
 void Menu::onClickListiener() {
 	strType_XPT2046_Coordinate strDisplayCoordinate;
 	if (!XPT2046_Get_TouchedPoint(&strDisplayCoordinate,

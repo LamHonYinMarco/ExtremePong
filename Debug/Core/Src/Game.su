@@ -3,14 +3,14 @@
 ../Core/Src/Game.cpp:11:6:bool Game::getStart()	16	static
 ../Core/Src/Game.cpp:14:6:void Game::quit()	16	static
 ../Core/Src/Game.cpp:25:6:void Game::restart()	24	static
-../Core/Src/Game.cpp:33:6:void Game::knockback()	16	static
-../Core/Src/Game.cpp:38:6:bool Game::checkCollision(int)	24	static
-../Core/Src/Game.cpp:55:6:bool Game::moveBall()	48	static
-../Core/Src/Game.cpp:127:6:void Game::botMovement()	40	static
+../Core/Src/Game.cpp:33:6:void Game::knockback(int)	24	static
+../Core/Src/Game.cpp:57:6:bool Game::checkCollision(int)	24	static
+../Core/Src/Game.cpp:74:6:bool Game::moveBall()	48	static
+../Core/Src/Game.cpp:161:6:void Game::botMovement()	40	static
 ../Core/Inc/Ball.h:4:7:constexpr Ball& Ball::operator=(const Ball&)	16	static
-../Core/Src/Game.cpp:187:6:void Game::displayBallMovement()	40	static
-../Core/Src/Game.cpp:198:6:void Game::displayPlayerMovement(int)	40	static
-../Core/Src/Game.cpp:212:6:void Game::displayWinner(int)	48	static
-../Core/Src/Game.cpp:225:6:void Game::gaming()	24	static
-../Core/Src/Game.cpp:290:1:Game::~Game()	24	static
-../Core/Src/Game.cpp:290:1:virtual Game::~Game()	16	static
+../Core/Src/Game.cpp:221:6:void Game::displayBallMovement()	40	static
+../Core/Src/Game.cpp:232:6:void Game::displayPlayerMovement(int)	40	static
+../Core/Src/Game.cpp:246:6:void Game::displayWinner(int)	48	static
+../Core/Src/Game.cpp:260:6:void Game::gaming()	24	static
+../Core/Src/Game.cpp:325:1:Game::~Game()	24	static
+../Core/Src/Game.cpp:325:1:virtual Game::~Game()	16	static

@@ -2,7 +2,6 @@
 #include "main.h"
 #include <Player.h>
 Score::Score(int playerNumber) {
-	// TODO Auto-generated constructor stub
 	this->playerNumber = playerNumber;
 	point = 0;
 }
@@ -237,11 +236,6 @@ void Score::turnOffDisplay() {
 		HAL_GPIO_WritePin(f2_GPIO_Port, f2_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(g2_GPIO_Port, g2_Pin, GPIO_PIN_SET);
 	}
-}
-
-void Score::endGame() {
-	//TODO end game
-
 }
 Score::~Score() {
 }

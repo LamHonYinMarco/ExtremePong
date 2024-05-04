@@ -31,7 +31,6 @@ void Game::restart() {
 }
 
 void Game::knockback(int playerNumber) {
-	//TODO
 	int pulse = 100, delay = startingDelay; // TODO change pulse
 	pulse *= ball.dy;
 	//	MX_TIM4_Init(pulse);
@@ -101,19 +100,27 @@ bool Game::moveBall() {
 	for (int i = 0; i < 2; i++) {
 		if (checkCollision(i)) {
 			// increase ball speed and move back within broad
-			if (ball.dy < 0) {
-				ball.dy -= menu.settings.getBallSpeedIncreaseRate();
+			if (ball.dy < 0) { // for player 2
+				ball.dy -= menu.settings.getBallSpeedIncreaseRate(); // increase ball speed
 				if (menu.getCurrentMenu() != Menu::vsBotGame
-						&& menu.settings.getKnockback()) {
-					knockback(Player::player2);
+						&& menu.settings.getKnockback()) { // check if knockback is on and if it is a bot. Bot will not get knockback.
+					knockback(Player::player2);	// knockback the player
+					displayPlayerMovement(Player::player2); // update player position
+					if (!checkCollision(Player::player2)) { // check if player is still on
+						break;
+					}
 				}
-				ball.y = player2YAxis + 1;
-			} else {
+				ball.y = player2YAxis + 1; // move ball to right place
+			} else { // for player 1
 				ball.dy += menu.settings.getBallSpeedIncreaseRate();
-				if (menu.settings.getKnockback()) {
-					knockback(Player::player1);
+				if (menu.settings.getKnockback()) { // check if knockback is on
+					knockback(Player::player1); // knockback the player
+					displayPlayerMovement(Player::player1); // update player position
+					if (!checkCollision(Player::player1)) { // check if player is still on
+						break;
+					}
 				}
-				ball.y = player1YAxis - ballWidith - 1;
+				ball.y = player1YAxis - ballWidith - 1; // move ball to right place
 			}
 			// change ball direction
 			ball.dy = -ball.dy;
@@ -229,7 +236,7 @@ void Game::displayPlayerMovement(int playerNumber) {
 			&& playerNumber == Player::player2) {
 		botMovement();
 	} else {
-		player[playerNumber].findAndSetX(); // TODO set location
+		player[playerNumber].findAndSetX();
 	}
 
 	LCD_MovePlayer(tempPlayerX, player[playerNumber].getY(),
