@@ -412,32 +412,118 @@ void LCD_DrawBall(uint16_t usC, uint16_t usP, uint16_t usColor) {
 		LCD_DrawLine(usC, usP + i, usC + ballWidith, usP + i, usColor);
 	}
 }
+// Move ball without in-between animation
+void LCD_TeleportBall(uint16_t usC1, uint16_t usP1, uint16_t usC2,
+		uint16_t usP2, int player1x, int player2x, int ballDy) {
+//	LCD_DrawBall(usC1,usP1,BLACK);
+	int xDisplacement, yDisplacement;
+	if (ballDy > 0) { // going to player 1
+		if (usP1 + ballWidith < player1YAxis
+				|| usP1 > player1YAxis + playerHeight) { // safe to remove whole ball
+			LCD_DrawBall(usC1, usP1, BLACK);
+			LCD_DrawBall(usC2, usP2, WHITE);
+			return;
+		}
+
+		yDisplacement = player1YAxis - usP1; // negative means ball is below and positive means ball is above
+		for (int y = 0; y < abs(yDisplacement); y++) { // middle
+			if (yDisplacement > 0) { // above
+				LCD_DrawLine(usC1, player1YAxis - 1 - y, usC1 + ballWidith,
+				player1YAxis - 1 - y, BLACK);
+			} else { // below
+				LCD_DrawLine(usC1, player1YAxis + playerHeight + 1 + y,
+						usC1 + ballWidith, player1YAxis + playerHeight + 1 + y,
+						BLACK);
+			}
+		}
+		xDisplacement = player1x - usC1; // negative means ball is right and positive means ball is left
+		if (xDisplacement < 0) {
+			if (player1x + playerWidith > usC1 + ballWidith) { // middle
+				LCD_DrawBall(usC2, usP2, WHITE);
+				return;
+			}
+			xDisplacement = player1x + playerWidith - usC1 - ballWidith;
+			for (int x = 0; x < abs(xDisplacement); x++) { // left
+				LCD_DrawLine(player1x + 1 + x, usP1, player1x + 1 + x,
+						usP1 + ballWidith, BLACK);
+			}
+		} else {
+			for (int x = 0; x < abs(xDisplacement); x++) { // left
+				LCD_DrawLine(player1x - 1 - x, usP1, player1x - 1 - x,
+						usP1 + ballWidith, BLACK);
+			}
+		}
+
+	} else { // going to player 2
+		if (usP1 > player2YAxis || usP1 < player2YAxis - playerHeight) { // safe to remove whole ball
+			LCD_DrawBall(usC1, usP1, BLACK);
+			LCD_DrawBall(usC2, usP2, WHITE);
+			return;
+		}
+		int player2TopLeftYAxis = player2YAxis - playerHeight;
+		yDisplacement = player2TopLeftYAxis - usP1; // negative means ball is below and positive means ball is above
+		for (int y = 0; y < abs(yDisplacement); y++) { // middle
+			if (yDisplacement > 0) { // above
+				LCD_DrawLine(usC1, player2TopLeftYAxis - 1 - y,
+						usC1 + ballWidith, player2TopLeftYAxis - 1 - y, BLACK);
+			} else { // below
+				LCD_DrawLine(usC1, player2TopLeftYAxis + playerHeight + 1 + y,
+						usC1 + ballWidith,
+						player2TopLeftYAxis + playerHeight + 1 + y,
+						BLACK);
+			}
+		}
+		xDisplacement = player2x - usC1; // negative means ball is right and positive means ball is left
+		if (xDisplacement < 0) {
+			if (player2x + playerWidith > usC1 + ballWidith) { // middle
+				LCD_DrawBall(usC2, usP2, WHITE);
+				return;
+			}
+			xDisplacement = player2x + playerWidith - usC1 - ballWidith;
+			for (int x = 0; x < abs(xDisplacement); x++) { // left
+				LCD_DrawLine(player2x + 1 + x, usP1, player2x + 1 + x,
+						usP1 + ballWidith, BLACK);
+			}
+		} else {
+			for (int x = 0; x < abs(xDisplacement); x++) { // left
+				LCD_DrawLine(player2x - 1 - x, usP1, player2x - 1 - x,
+						usP1 + ballWidith, BLACK);
+			}
+		}
+	}
+	LCD_DrawBall(usC2, usP2, WHITE);
+}
+
 // Current location first then new location
 void LCD_MoveBall(uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2) {
 	int xDisplacement = usC1 - usC2;
 	int yDisplacement = usP1 - usP2;
-	if(xDisplacement == 0 && yDisplacement == 0){
+	if (xDisplacement == 0 && yDisplacement == 0) {
 		return;
 	}
-	if(xDisplacement<0){ // ball moved right
-		LCD_DrawLine(usC1,usP1,usC1,usP1+ballWidith,BLACK);
+	if (xDisplacement < 0) { // ball moved right
+		LCD_DrawLine(usC1, usP1, usC1, usP1 + ballWidith, BLACK);
 		usC1++;
-		LCD_DrawLine(usC1+ballWidith,usP1,usC1+ballWidith,usP1+ballWidith,WHITE);
-	}else if(xDisplacement>0){ // ball moved left
-		LCD_DrawLine(usC1+ballWidith,usP1,usC1+ballWidith,usP1+ballWidith,BLACK);
+		LCD_DrawLine(usC1 + ballWidith, usP1, usC1 + ballWidith,
+				usP1 + ballWidith, WHITE);
+	} else if (xDisplacement > 0) { // ball moved left
+		LCD_DrawLine(usC1 + ballWidith, usP1, usC1 + ballWidith,
+				usP1 + ballWidith, BLACK);
 		usC1--;
-		LCD_DrawLine(usC1,usP1,usC1,usP1+ballWidith,WHITE);
+		LCD_DrawLine(usC1, usP1, usC1, usP1 + ballWidith, WHITE);
 	}
-	if(yDisplacement<0){ // ball moved down
-		LCD_DrawLine(usC1,usP1,usC1+ballWidith,usP1,BLACK);
+	if (yDisplacement < 0) { // ball moved down
+		LCD_DrawLine(usC1, usP1, usC1 + ballWidith, usP1, BLACK);
 		usP1++;
-		LCD_DrawLine(usC1,usP1+ballWidith,usC1+ballWidith,usP1+ballWidith,WHITE);
-	}else if(yDisplacement>0){ // ball moved up
-		LCD_DrawLine(usC1,usP1+ballWidith,usC1+ballWidith,usP1+ballWidith,BLACK);
+		LCD_DrawLine(usC1, usP1 + ballWidith, usC1 + ballWidith,
+				usP1 + ballWidith, WHITE);
+	} else if (yDisplacement > 0) { // ball moved up
+		LCD_DrawLine(usC1, usP1 + ballWidith, usC1 + ballWidith,
+				usP1 + ballWidith, BLACK);
 		usP1--;
-		LCD_DrawLine(usC1,usP1,usC1+ballWidith,usP1,WHITE);
+		LCD_DrawLine(usC1, usP1, usC1 + ballWidith, usP1, WHITE);
 	}
-	LCD_MoveBall(usC1,usP1,usC2,usP2);
+	LCD_MoveBall(usC1, usP1, usC2, usP2);
 }
 
 void LCD_DrawPlayer(uint16_t usC, uint16_t usP, uint16_t usColor) {
@@ -447,13 +533,13 @@ void LCD_DrawPlayer(uint16_t usC, uint16_t usP, uint16_t usColor) {
 }
 
 // return true if previous and current are touching, otherwise false
-bool checkTouch(uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2){
-	if(usC1 == playerNotTouching && usC2 == playerNotTouching){
+bool checkTouch(uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2) {
+	if (usC1 == playerNotTouching && usC2 == playerNotTouching) {
 		return false;
-	}else if(usC2 == playerNotTouching){
+	} else if (usC2 == playerNotTouching) {
 		LCD_DrawPlayer(usC1, usP1, BLACK);
-			return false;
-	}else if(usC1 == playerNotTouching){
+		return false;
+	} else if (usC1 == playerNotTouching) {
 		LCD_DrawPlayer(usC2, usP2, WHITE);
 		return false;
 	}
@@ -462,7 +548,7 @@ bool checkTouch(uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2){
 
 void LCD_MovePlayer(uint16_t usC1, uint16_t usP1, uint16_t usC2,
 		uint16_t usP2) {
-	if(!checkTouch(usC1,usP1,usC2,usP2)){
+	if (!checkTouch(usC1, usP1, usC2, usP2)) {
 		return;
 	}
 	int displacement = usC1 - usC2;
@@ -481,7 +567,7 @@ void LCD_MovePlayer(uint16_t usC1, uint16_t usP1, uint16_t usC2,
 			LCD_DrawLine(usC1 + playerWidith - i, usP2, usC1 + playerWidith - i,
 					usP2 + playerHeight, BLACK);
 			LCD_DrawLine(usC1 - i - 1, usP1, usC1 - i - 1, usP1 + playerHeight,
-					WHITE);
+			WHITE);
 		}
 	}
 }

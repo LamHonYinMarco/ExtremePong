@@ -73,6 +73,9 @@ bool Game::checkCollision(int playerNumber) {
 }
 bool Game::moveBall() {
 	// update ball location according to vector
+	int tempY, tempX;
+	tempX = ball.x;
+	tempY = ball.y;
 	ball.x += ball.dx;
 	ball.y += ball.dy;
 	// if vsWall then no need to check for player 2 collision
@@ -102,25 +105,27 @@ bool Game::moveBall() {
 			// increase ball speed and move back within broad
 			if (ball.dy < 0) { // for player 2
 				ball.dy -= menu.settings.getBallSpeedIncreaseRate(); // increase ball speed
-				if (menu.getCurrentMenu() != Menu::vsBotGame
-						&& menu.settings.getKnockback()) { // check if knockback is on and if it is a bot. Bot will not get knockback.
-					knockback(Player::player2);	// knockback the player
-					displayPlayerMovement(Player::player2); // update player position
-					if (!checkCollision(Player::player2)) { // check if player is still on
-						break;
-					}
-				}
-				ball.y = player2YAxis + 1; // move ball to right place
+//				tempY = ball.y;
+				ball.y = player2YAxis + 1; // set ball to right place
 			} else { // for player 1
 				ball.dy += menu.settings.getBallSpeedIncreaseRate();
+//				tempY = ball.y;
+				ball.y = player1YAxis - ballWidith - 1; // set ball to right place
+			}
+			LCD_TeleportBall(tempX,tempY,ball.x,ball.y,player[Player::player1].getX(),player[Player::player2].getX(),ball.dy); // move ball to right place
+			if ((menu.getCurrentMenu() != Menu::vsBotGame
+					&& i == Player::player2) || i == Player::player1) { // check if it is bot, if bot then skip this
 				if (menu.settings.getKnockback()) { // check if knockback is on
-					knockback(Player::player1); // knockback the player
-					displayPlayerMovement(Player::player1); // update player position
-					if (!checkCollision(Player::player1)) { // check if player is still on
+					knockback(i); // knockback the player
+					displayPlayerMovement(i); // update player position
+					if (!player[i].playerTouch()
+							&& ((ball.x >= player[i].getX())
+									&& (ball.x
+											<= player[i].getX() + playerWidith))) { // check if player is still on and if within player range
+						ball.y = tempY;
 						break;
 					}
 				}
-				ball.y = player1YAxis - ballWidith - 1; // move ball to right place
 			}
 			// change ball direction
 			ball.dy = -ball.dy;
@@ -312,13 +317,13 @@ void Game::gaming() {
 	if (player[Player::player1].score.getPoint()
 			== menu.settings.getPointsNeeded()) {
 		displayWinner(Player::player1);
-		HAL_Delay(5000);
+		HAL_Delay(winScreenDuration);
 		quit();
 	}
 	if (player[Player::player2].score.getPoint()
 			== menu.settings.getPointsNeeded()) {
 		displayWinner(Player::player2);
-		HAL_Delay(5000);
+		HAL_Delay(winScreenDuration);
 		quit();
 	}
 }

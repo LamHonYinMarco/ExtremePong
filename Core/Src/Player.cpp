@@ -33,6 +33,19 @@ int Player::getY() {
 void Player::setADC_HandleTypeDef(ADC_HandleTypeDef *hadc) {
 	this->hadc = hadc;
 }
+bool Player::playerTouch() {
+	int inputPin;
+	if (playerNumber == player1) { // check if player is touching the rheostat
+		inputPin = HAL_GPIO_ReadPin(player1Touch_GPIO_Port, player1Touch_Pin);
+	} else {
+		inputPin = HAL_GPIO_ReadPin(player2Touch_GPIO_Port, player2Touch_Pin);
+	}
+	if (inputPin == 0) {
+		this->x = playerNotTouching;
+		return false;
+	}
+	return true;
+}
 void Player::findAndSetX() {
 	int ADCValueInt, inputPin, x;
 	if (playerNumber == player1) { // check if player is touching the rheostat

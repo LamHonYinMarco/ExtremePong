@@ -61,6 +61,7 @@
 #define rheostatMaximumValue 4050
 #define startingDelay 200
 #define maximumDelay 2000
+#define winScreenDuration 3000
 
 void            LCD_INIT		( void );
 void            LCD_Rst			( void );
@@ -79,6 +80,7 @@ void            LCD_DrawDot		( uint16_t usC, uint16_t usP, uint16_t usColor );
 void 		LCD_DrawEllipse		( uint16_t usC, uint16_t usP, uint16_t SR, uint16_t LR, uint16_t usColor);
 void	LCD_DrawEmptyRectangle (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2, uint16_t usColor);
 void 	LCD_DrawBall ( uint16_t usC, uint16_t usP, uint16_t usColor );
+void    LCD_TeleportBall(uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2,int player1x, int player2x, int ballDy);
 void	LCD_MoveBall (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2);
 void 	LCD_DrawPlayer ( uint16_t usC, uint16_t usP, uint16_t usColor );
 void	LCD_MovePlayer (uint16_t usC1, uint16_t usP1, uint16_t usC2, uint16_t usP2);

@@ -18,8 +18,9 @@
 ../Core/Src/lcd.cpp:389:6:void LCD_DrawDot(uint16_t, uint16_t, uint16_t)	16	static
 ../Core/Src/lcd.cpp:399:6:void LCD_DrawEllipse(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	48	static
 ../Core/Src/lcd.cpp:410:6:void LCD_DrawBall(uint16_t, uint16_t, uint16_t)	40	static
-../Core/Src/lcd.cpp:416:6:void LCD_MoveBall(uint16_t, uint16_t, uint16_t, uint16_t)	40	static
-../Core/Src/lcd.cpp:443:6:void LCD_DrawPlayer(uint16_t, uint16_t, uint16_t)	40	static
-../Core/Src/lcd.cpp:450:6:bool checkTouch(uint16_t, uint16_t, uint16_t, uint16_t)	24	static
-../Core/Src/lcd.cpp:463:6:void LCD_MovePlayer(uint16_t, uint16_t, uint16_t, uint16_t)	48	static
-../Core/Src/lcd.cpp:489:6:void LCD_DrawNet()	16	static
+../Core/Src/lcd.cpp:416:6:void LCD_TeleportBall(uint16_t, uint16_t, uint16_t, uint16_t, int, int, int)	72	static
+../Core/Src/lcd.cpp:498:6:void LCD_MoveBall(uint16_t, uint16_t, uint16_t, uint16_t)	40	static
+../Core/Src/lcd.cpp:529:6:void LCD_DrawPlayer(uint16_t, uint16_t, uint16_t)	40	static
+../Core/Src/lcd.cpp:536:6:bool checkTouch(uint16_t, uint16_t, uint16_t, uint16_t)	24	static
+../Core/Src/lcd.cpp:549:6:void LCD_MovePlayer(uint16_t, uint16_t, uint16_t, uint16_t)	48	static
+../Core/Src/lcd.cpp:575:6:void LCD_DrawNet()	16	static

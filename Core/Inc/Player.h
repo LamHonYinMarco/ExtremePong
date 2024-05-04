@@ -21,6 +21,7 @@ public:
 	int getY();
 	void resetX();
 	void setADC_HandleTypeDef(ADC_HandleTypeDef *hadc);
+	bool playerTouch();
 	void findAndSetX();
 	virtual ~Player();
 };
