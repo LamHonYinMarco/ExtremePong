@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 static void MX_TIM4_Init(int pulse);
+static void MX_TIM2_Init(int pulse);
 Game::Game() {
 	start = false;
 }
@@ -32,31 +33,34 @@ void Game::restart() {
 	ball.reset();
 	menu.setCurrentMenu(menu.getCurrentMenu());
 }
+TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim4;
 void Game::knockback(int playerNumber) {
 	int pulse = minPulse, delay = startingDelay; // TODO change pulse
 
-	if(pulse + pulseRate*ball.dy >= maxPulse){
+	if(pulse + pulseRate* abs(ball.dy) >= maxPulse){
 		MX_TIM4_Init(maxPulse);
+		MX_TIM2_Init(maxPulse);
 	}else{
-		MX_TIM4_Init(pulse + pulseRate*ball.dy);
+		MX_TIM4_Init(pulse + pulseRate*abs(ball.dy));
+		MX_TIM2_Init(pulse + pulseRate*abs(ball.dy));
 	}
 	if (playerNumber == Player::player1) {
 			HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1); //PB6
-		if (startingDelay * ball.dy >= maximumDelay) {
+		if (startingDelay * abs(ball.dy) >= maximumDelay) {
 			HAL_Delay(maximumDelay);
 		} else {
-			HAL_Delay(delay * ball.dy);
+			HAL_Delay(delay * abs(ball.dy));
 		}
 			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_1); // no idea if this will work, might need to do pulse stuff
 	} else {
-			HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2); //PB7
-		if (startingDelay * ball.dy >= maximumDelay) {
+			HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4); //PA3
+		if (startingDelay * abs(ball.dy) >= maximumDelay) {
 			HAL_Delay(maximumDelay);
 		} else {
-			HAL_Delay(delay * ball.dy);
+			HAL_Delay(delay * abs(ball.dy));
 		}
-			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_2);
+			HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_4);
 	}
 
 }
@@ -333,7 +337,7 @@ void Game::gaming() {
 		HAL_Delay(winScreenDuration);
 		quit();
 	}
-//	HAL_Delay(gameDelay);
+	HAL_Delay(gameDelay);
 }
 Game::~Game() {
 }
@@ -385,13 +389,53 @@ static void MX_TIM4_Init(int pulse)
   {
     Error_Handler();
   }
-  if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
   /* USER CODE BEGIN TIM4_Init 2 */
 
   /* USER CODE END TIM4_Init 2 */
   HAL_TIM_MspPostInit(&htim4);
+
+}
+
+static void MX_TIM2_Init(int pulse)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_OC_InitTypeDef sConfigOC = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 0;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 19999;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = pulse;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
+  HAL_TIM_MspPostInit(&htim2);
 
 }
