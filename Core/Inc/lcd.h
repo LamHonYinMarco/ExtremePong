@@ -62,6 +62,10 @@
 #define startingDelay 200
 #define maximumDelay 2000
 #define winScreenDuration 3000
+#define maxPulse 23000
+#define minPulse 13000
+#define pulseRate 1000
+#define gameDelay 100
 
 void            LCD_INIT		( void );
 void            LCD_Rst			( void );

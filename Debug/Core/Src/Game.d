@@ -29,7 +29,7 @@ Core/Src/Game.o: ../Core/Src/Game.cpp ../Core/Inc/Game.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Core/Inc/Menu.h ../Core/Inc/Settings.h ../Core/Inc/Ball.h \
- ../Core/Inc/lcd.h
+ ../Core/Inc/lcd.h ../Core/Inc/main.h
 ../Core/Inc/Game.h:
 ../Core/Inc/Player.h:
 ../Core/Inc/Score.h:
@@ -65,3 +65,4 @@ Core/Src/Game.o: ../Core/Src/Game.cpp ../Core/Inc/Game.h \
 ../Core/Inc/Settings.h:
 ../Core/Inc/Ball.h:
 ../Core/Inc/lcd.h:
+../Core/Inc/main.h:
